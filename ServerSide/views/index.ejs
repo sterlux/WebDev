@@ -25,14 +25,53 @@
         background-color: #f0f0f0;
         border-radius: 5px;
       }
+      #add {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+      }
+      #form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        max-width: 400px;
+      }
+      label {
+        margin-bottom: 5px;
+      }
+      input {
+        width: 95%;
+        padding: 7px;
+      }
+      button {
+        width: 100%;
+        margin: 15px 0;
+        padding: 7px;
+        background-color: green;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
     <h1>Server-Side Rendered Book List</h1>
-    <ul>
+    <ul id="list">
       <% books.forEach(function(book) { %>
       <li><strong><%= book.title %></strong> by <%= book.author %></li>
       <% }); %>
     </ul>
+    <h1>Add a New Book</h1>
+    <div id="add">
+      <form class="new-item" action="/add" method="POST" id="form">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required />
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" required />
+        <button type="submit">Add Book</button>
+      </form>
+    </div>
   </body>
 </html>
